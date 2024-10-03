@@ -3,13 +3,13 @@ namespace Alchemy.Inspector
     public sealed class GroupAttribute : PropertyGroupAttribute
     {
         public GroupAttribute() : base() { }
-        public GroupAttribute(string groupPath) : base(groupPath) { }
+        public GroupAttribute(string groupPath, int groupOrder = -1) : base(groupPath, groupOrder) { }
     }
 
     public sealed class BoxGroupAttribute : PropertyGroupAttribute
     {
         public BoxGroupAttribute() : base() { }
-        public BoxGroupAttribute(string groupPath) : base(groupPath) { }
+        public BoxGroupAttribute(string groupPath, int groupOrder = -1) : base(groupPath, groupOrder) { }
     }
 
     public sealed class TabGroupAttribute : PropertyGroupAttribute
@@ -19,7 +19,7 @@ namespace Alchemy.Inspector
             TabName = tabName;
         }
 
-        public TabGroupAttribute(string groupPath, string tabName) : base(groupPath)
+        public TabGroupAttribute(string groupPath, string tabName, int groupOrder = -1) : base(groupPath, groupOrder)
         {
             TabName = tabName;
         }
@@ -30,18 +30,18 @@ namespace Alchemy.Inspector
     public sealed class FoldoutGroupAttribute : PropertyGroupAttribute
     {
         public FoldoutGroupAttribute() : base() { }
-        public FoldoutGroupAttribute(string groupPath) : base(groupPath) { }
+        public FoldoutGroupAttribute(string groupPath, int groupOrder = -1) : base(groupPath, groupOrder) { }
     }
 
     public sealed class HorizontalGroupAttribute : PropertyGroupAttribute
     {
         public HorizontalGroupAttribute() : base() { }
-        public HorizontalGroupAttribute(string groupPath) : base(groupPath) { }
+        public HorizontalGroupAttribute(string groupPath, int groupOrder = -1) : base(groupPath, groupOrder) { }
     }
 
     public sealed class InlineGroupAttribute : PropertyGroupAttribute
     {
         public InlineGroupAttribute() : base() { }
-        public InlineGroupAttribute(string groupPath) : base(groupPath) { }
+        public InlineGroupAttribute(string groupPath, int groupOrder = -1) : base(groupPath, groupOrder) { }
     }
 }

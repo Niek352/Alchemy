@@ -10,13 +10,16 @@ namespace Alchemy.Inspector
         public PropertyGroupAttribute()
         {
             GroupPath = string.Empty;
+            GroupOrder = -1;
         }
         
-        public PropertyGroupAttribute(string groupPath)
+        public PropertyGroupAttribute(string groupPath, int groupOrder = -1)
         {
             GroupPath = groupPath;
+            GroupOrder = groupOrder;
         }
 
         public string GroupPath { get; }
+        public int GroupOrder { get; }
     }
 }

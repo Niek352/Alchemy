@@ -18,14 +18,16 @@ namespace Alchemy.Editor
     {
         public sealed class GroupNode
         {
-            public GroupNode(string name, AlchemyGroupDrawer drawer)
+            public GroupNode(string name, AlchemyGroupDrawer drawer, int groupAttributeGroupOrder = -1)
             {
                 this.name = name;
                 this.drawer = drawer;
+                this.groupAttributeGroupOrder = groupAttributeGroupOrder;
             }
 
             readonly string name;
             readonly AlchemyGroupDrawer drawer;
+            readonly int groupAttributeGroupOrder;
 
             readonly List<MemberInfo> members = new();
             readonly List<GroupNode> children = new();
@@ -69,6 +71,11 @@ namespace Alchemy.Editor
                         yield return e.Current;
                     }
                 }
+            }
+
+            public void SortByGroupAttribute()
+            {
+                children.Sort((node, groupNode) => node.groupAttributeGroupOrder.CompareTo(groupNode.groupAttributeGroupOrder));
             }
         }
 
@@ -181,7 +188,7 @@ namespace Alchemy.Editor
                         if (next == null)
                         {
                             var drawer = AlchemyEditorUtility.CreateGroupDrawer(groupAttribute, targetType);
-                            next = new GroupNode(groupName, drawer);
+                            next = new GroupNode(groupName, drawer, groupAttribute.GroupOrder);
                             parentNode.Add(next);
                         }
 
@@ -192,6 +199,8 @@ namespace Alchemy.Editor
                 parentNode.AddMember(member);
             }
 
+            rootNode.SortByGroupAttribute();
+            
             return rootNode;
         }
 
@@ -275,6 +284,7 @@ namespace Alchemy.Editor
                         {
                             element.SetEnabled(false);
                         }
+                        
 
                         return element;
                     }
