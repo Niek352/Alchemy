@@ -1,3 +1,4 @@
+using Alchemy.Editor.Elements;
 using UnityEditor.UIElements;
 
 namespace Alchemy.Editor.Drawers
@@ -6,6 +7,10 @@ namespace Alchemy.Editor.Drawers
     {
         public override void OnCreateElement()
         {
+            if (TargetElement is MethodButton methodButton)
+            {
+                methodButton.button.clicked += OnInspectorChanged;
+            }
             TargetElement.TrackSerializedObjectValue(SerializedObject, x =>
             {
                 OnInspectorChanged();

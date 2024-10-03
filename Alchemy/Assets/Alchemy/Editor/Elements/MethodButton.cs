@@ -68,6 +68,6 @@ namespace Alchemy.Editor.Elements
         }
 
         readonly Foldout foldout;
-        readonly Button button;
+        public readonly Button button;
     }
 }
