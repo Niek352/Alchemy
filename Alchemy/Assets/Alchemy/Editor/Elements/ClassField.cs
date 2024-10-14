@@ -2,6 +2,8 @@ using System;
 using System.Reflection;
 using UnityEngine.UIElements;
 using Alchemy.Inspector;
+using UnityEditor.UIElements;
+using UnityEngine;
 
 namespace Alchemy.Editor.Elements
 {
@@ -44,6 +46,8 @@ namespace Alchemy.Editor.Elements
                 // Add member elements
                 foreach (var member in node.Members.OrderByAttributeThenByMemberType())
                 {
+                    if (member.HasCustomAttribute<HideInInspector>()) continue;
+                    
                     var element = new ReflectionField(obj, member);
                     element.style.width = Length.Percent(100f);
                     element.OnValueChanged += x => OnValueChanged?.Invoke(obj);
