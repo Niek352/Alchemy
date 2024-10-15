@@ -213,6 +213,12 @@ namespace Alchemy.Editor.Elements
             {
                 AddField(new Hash128Field(label), (Hash128)obj);
             }
+            else if (obj is Guid guid)
+            {
+                var str = guid == Guid.Empty ? $"{label}: Empty" : $"{label}: {guid.ToString()}";
+                var labelField = new Label(str);
+                Add(labelField);        
+            }
             else if (type == typeof(AnimationCurve))
             {
                 AddField(new CurveField(label), (AnimationCurve)obj);
