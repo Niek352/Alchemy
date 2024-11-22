@@ -42,9 +42,7 @@ namespace Alchemy.Editor.Elements
                     }
                     else if (property.isArray)
                     {
-                        element = new PropertyField(property);
-                        //Bugged
-                        //element = new PropertyListView(property);
+                        element = new PropertyListView(property);
                     }
                     else if (targetType.TryGetCustomAttribute<PropertyGroupAttribute>(out var groupAttribute)) // custom group
                     {
